@@ -30,6 +30,7 @@ void set_input_format_string(char (*format_string)[INPUT_FORMAT_STRING_LENGTH], 
 
 void get_vscanf_input(const char *const input_format_string, ...) {
     va_list ap;
+
     va_start(ap, input_format_string);
     vscanf(input_format_string, ap);
     va_end(ap);
