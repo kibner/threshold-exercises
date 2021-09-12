@@ -24,7 +24,7 @@ int main(void) {
     return 0;
 }
 
-void set_input_format_string(char (*format_string)[INPUT_FORMAT_STRING_LENGTH], size_t buffer_size) {
+void set_input_format_string(char (*format_string)[INPUT_FORMAT_STRING_LENGTH], const size_t buffer_size) {
     snprintf(*format_string, buffer_size, "%s", "%u");
 }
 
