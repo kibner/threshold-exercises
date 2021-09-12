@@ -32,6 +32,7 @@ void get_vscanf_input(const char *const input_format_string, ...) {
     va_list ap;
 
     va_start(ap, input_format_string);
+    // TODO: replace scanf as it is unsafe
     vscanf(input_format_string, ap);
     va_end(ap);
 }
