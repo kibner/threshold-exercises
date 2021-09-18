@@ -49,9 +49,8 @@ bool has_fgets_erred(const char *fgets_result) {
 }
 
 uint32_t parse_ulong_string(const char *input_buffer) {
-    unsigned long parsed_number;
     errno = 0;
-    parsed_number = strtoul(input_buffer, NULL, 0);
+    const unsigned long parsed_number = strtoul(input_buffer, NULL, 0);
 
     if (errno == ERANGE) {
         return 0;
