@@ -22,19 +22,17 @@ uint32_t parse_ulong_string(const char *input_buffer);
 bool is_valid_ulong(unsigned long prime_ceiling);
 
 int main(void) {
-    char input_buffer[INPUT_FORMAT_STRING_LENGTH];
-    uint32_t prime_ceiling;
-    char *fgets_result;
-
     printf("Enter a number to use as the ceiling when calculating prime numbers:  \n");
-    fgets_result = fgets(input_buffer, INPUT_FORMAT_STRING_LENGTH, stdin);
+
+    char input_buffer[INPUT_FORMAT_STRING_LENGTH];
+    const char *fgets_result = fgets(input_buffer, INPUT_FORMAT_STRING_LENGTH, stdin);
 
     if (has_fgets_erred(fgets_result)) {
         printf("Error reading from console.\n");
         return EXIT_FAILURE;
     }
 
-    prime_ceiling = parse_ulong_string(input_buffer);
+    const uint32_t prime_ceiling = parse_ulong_string(input_buffer);
 
     if (not is_valid_ulong(prime_ceiling)) {
         printf("Invalid input. Please restart and try again.\n");
