@@ -30,19 +30,19 @@ int main(void) {
 
     if (has_fgets_erred(fgets_result)) {
         printf("Error reading from console.\n");
-        return 1;
+        return EXIT_FAILURE;
     }
 
     prime_ceiling = parse_ulong_string(input_buffer);
 
     if (not is_valid_ulong(prime_ceiling)) {
         printf("Invalid input. Please restart and try again.\n");
-        return 1;
+        return EXIT_FAILURE;
     }
 
     printf("%lu", prime_ceiling);
 
-    return 0;
+    return EXIT_SUCCESS;
 }
 
 bool has_fgets_erred(const char *fgets_result) {
