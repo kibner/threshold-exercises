@@ -6,6 +6,7 @@
 //    STOP
 
 #include <errno.h>
+#include <inttypes.h>
 #include <iso646.h>
 #include <stdbool.h>
 #include <stdint.h>
@@ -16,13 +17,13 @@
 
 bool has_fgets_erred(const char *fgets_result);
 
-unsigned long parse_ulong_string(const char *input_buffer);
+uint32_t parse_ulong_string(const char *input_buffer);
 
 bool is_valid_ulong(unsigned long prime_ceiling);
 
 int main(void) {
     char input_buffer[INPUT_FORMAT_STRING_LENGTH];
-    unsigned long prime_ceiling;
+    uint32_t prime_ceiling;
     char *fgets_result;
 
     printf("Enter a number to use as the ceiling when calculating prime numbers:  \n");
@@ -40,7 +41,7 @@ int main(void) {
         return EXIT_FAILURE;
     }
 
-    printf("%lu", prime_ceiling);
+    printf("%"PRIu32, prime_ceiling);
 
     return EXIT_SUCCESS;
 }
@@ -49,7 +50,7 @@ bool has_fgets_erred(const char *fgets_result) {
     return fgets_result == NULL;
 }
 
-unsigned long parse_ulong_string(const char *input_buffer) {
+uint32_t parse_ulong_string(const char *input_buffer) {
     unsigned long parsed_number;
     errno = 0;
     parsed_number = strtoul(input_buffer, NULL, 0);
@@ -58,7 +59,7 @@ unsigned long parse_ulong_string(const char *input_buffer) {
         return 0;
     }
 
-    return parsed_number;
+    return (uint32_t) parsed_number;
 }
 
 bool is_valid_ulong(const unsigned long prime_ceiling) {
