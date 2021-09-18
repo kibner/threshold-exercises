@@ -61,6 +61,6 @@ unsigned long parse_ulong_string(const char *input_buffer) {
     return parsed_number;
 }
 
-bool is_valid_ulong(unsigned long prime_ceiling) {
+bool is_valid_ulong(const unsigned long prime_ceiling) {
     return prime_ceiling > 0;
 }
