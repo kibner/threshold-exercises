@@ -28,14 +28,14 @@ int main(void) {
     const char *fgets_result = fgets(input_buffer, INPUT_FORMAT_STRING_LENGTH, stdin);
 
     if (has_fgets_erred(fgets_result)) {
-        printf("Error reading from console.\n");
+        printf("Unknown error reading from console.\n");
         return EXIT_FAILURE;
     }
 
     const uint32_t prime_ceiling = parse_ulong_string(input_buffer);
 
     if (not is_valid_ulong(prime_ceiling)) {
-        printf("Invalid input. Please restart and try again.\n");
+        printf("Error validating input. Please restart and try again.\n");
         return EXIT_FAILURE;
     }
 
@@ -52,7 +52,13 @@ uint32_t parse_ulong_string(const char *input_buffer) {
     errno = 0;
     const unsigned long parsed_number = strtoul(input_buffer, NULL, 0);
 
-    if (errno == ERANGE) {
+    if (errno not_eq 0) {
+        if (errno == ERANGE) {
+            printf("Out of range error when parsing unsigned long from string.\n");
+        } else {
+            printf("Unknown error when parsing unsigned long from string.\n");
+        }
+
         return 0;
     }
 
