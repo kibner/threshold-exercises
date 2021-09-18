@@ -17,9 +17,9 @@
 
 bool has_fgets_erred(const char *fgets_result);
 
-uint32_t parse_ulong_string(const char *input_buffer);
+uint32_t parse_ulong_string(const char *ulong_string);
 
-bool is_valid_ulong(unsigned long prime_ceiling);
+bool is_valid_ulong(unsigned long ulong_value);
 
 int main(void) {
     printf("Enter a number to use as the ceiling when calculating prime numbers:  \n");
@@ -48,9 +48,9 @@ bool has_fgets_erred(const char *fgets_result) {
     return fgets_result == NULL;
 }
 
-uint32_t parse_ulong_string(const char *input_buffer) {
+uint32_t parse_ulong_string(const char *ulong_string) {
     errno = 0;
-    const unsigned long parsed_number = strtoul(input_buffer, NULL, 0);
+    const unsigned long parsed_number = strtoul(ulong_string, NULL, 0);
 
     if (errno not_eq 0) {
         if (errno == ERANGE) {
@@ -65,6 +65,6 @@ uint32_t parse_ulong_string(const char *input_buffer) {
     return (uint32_t) parsed_number;
 }
 
-bool is_valid_ulong(const unsigned long prime_ceiling) {
-    return prime_ceiling > 0;
+bool is_valid_ulong(const unsigned long ulong_value) {
+    return ulong_value > 0;
 }
