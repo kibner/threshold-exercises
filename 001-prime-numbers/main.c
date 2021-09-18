@@ -4,35 +4,63 @@
 //      Step 3 → If A is divisible by any value (A-1 to 2) it is not prime
 //      Step 4 → Else it is prime
 //    STOP
-#include <stdarg.h>
+
+#include <errno.h>
+#include <iso646.h>
+#include <stdbool.h>
+#include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-#define INPUT_FORMAT_STRING_LENGTH ((const unsigned int)(3))
+#define INPUT_FORMAT_STRING_LENGTH ((const uint8_t)(11))
 
-void set_input_format_string(char (*format_string)[INPUT_FORMAT_STRING_LENGTH], size_t buffer_size);
+bool has_fgets_erred(const char *fgets_result);
 
-void get_vscanf_input(const char *input_format_string, ...);
+unsigned long parse_ulong_string(const char *input_buffer);
+
+bool is_valid_ulong(unsigned long prime_ceiling);
 
 int main(void) {
-    char input_format_string[INPUT_FORMAT_STRING_LENGTH];
-    unsigned int prime_ceiling;
+    char input_buffer[INPUT_FORMAT_STRING_LENGTH];
+    unsigned long prime_ceiling;
+    char *fgets_result;
 
-    set_input_format_string(&input_format_string, sizeof(input_format_string));
     printf("Enter a number to use as the ceiling when calculating prime numbers:  \n");
-    get_vscanf_input(input_format_string, &prime_ceiling);
+    fgets_result = fgets(input_buffer, INPUT_FORMAT_STRING_LENGTH, stdin);
+
+    if (has_fgets_erred(fgets_result)) {
+        printf("Error reading from console.\n");
+        return 1;
+    }
+
+    prime_ceiling = parse_ulong_string(input_buffer);
+
+    if (not is_valid_ulong(prime_ceiling)) {
+        printf("Invalid input. Please restart and try again.\n");
+        return 1;
+    }
+
+    printf("%lu", prime_ceiling);
 
     return 0;
 }
 
-void set_input_format_string(char (*format_string)[INPUT_FORMAT_STRING_LENGTH], const size_t buffer_size) {
-    snprintf(*format_string, buffer_size, "%s", "%u");
+bool has_fgets_erred(const char *fgets_result) {
+    return fgets_result == NULL;
 }
 
-void get_vscanf_input(const char *const input_format_string, ...) {
-    va_list ap;
+unsigned long parse_ulong_string(const char *input_buffer) {
+    unsigned long parsed_number;
+    errno = 0;
+    parsed_number = strtoul(input_buffer, NULL, 0);
 
-    va_start(ap, input_format_string);
-    // TODO: replace scanf as it is unsafe
-    vscanf(input_format_string, ap);
-    va_end(ap);
+    if (errno == ERANGE) {
+        return 0;
+    }
+
+    return parsed_number;
+}
+
+bool is_valid_ulong(unsigned long prime_ceiling) {
+    return prime_ceiling > 0;
 }
