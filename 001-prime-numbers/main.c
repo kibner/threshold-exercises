@@ -21,10 +21,11 @@ uint32_t parse_ulong_string(const char *ulong_string);
 
 bool is_valid_ulong(unsigned long ulong_value);
 
-uint32_t get_ulong_from_console(const char *prompt_message);
+uint32_t get_ulong_from_stream(FILE *stream, const char *prompt_message);
 
 int main(void) {
-    uint32_t prime_ceiling = get_ulong_from_console(
+    uint32_t prime_ceiling = get_ulong_from_stream(
+            stdin,
             "Enter a number to use as the ceiling when calculating prime numbers:");
 
     printf("Prime number ceiling: %"PRIu32, prime_ceiling);
@@ -32,18 +33,18 @@ int main(void) {
     return EXIT_SUCCESS;
 }
 
-uint32_t get_ulong_from_console(const char *prompt_message) {
+uint32_t get_ulong_from_stream(FILE *stream, const char *prompt_message) {
     if (prompt_message not_eq NULL) {
         printf("%s\n", prompt_message);
     }
 
     char input_buffer[INPUT_FORMAT_STRING_LENGTH];
-    const char *fgets_result = fgets(input_buffer, INPUT_FORMAT_STRING_LENGTH, stdin);
+    const char *fgets_result = fgets(input_buffer, INPUT_FORMAT_STRING_LENGTH, stream);
 
     if (has_fgets_erred(fgets_result)) {
         printf("Unknown error reading from console.\n");
 
-        return get_ulong_from_console(prompt_message);
+        return get_ulong_from_stream(stream, prompt_message);
     }
 
     const uint32_t ulong_value = parse_ulong_string(input_buffer);
@@ -51,7 +52,7 @@ uint32_t get_ulong_from_console(const char *prompt_message) {
     if (not is_valid_ulong(ulong_value)) {
         printf("Error validating input. Please try again.\n");
 
-        return get_ulong_from_console(prompt_message);
+        return get_ulong_from_stream(stream, prompt_message);
     }
 
     return ulong_value;
