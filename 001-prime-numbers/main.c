@@ -42,7 +42,7 @@ uint32_t get_ulong_from_stream(FILE *stream, const char *prompt_message) {
     const char *fgets_result = fgets(input_buffer, INPUT_FORMAT_STRING_LENGTH, stream);
 
     if (has_fgets_erred(fgets_result)) {
-        printf("Unknown error reading from console.\n");
+        printf("Unknown error reading from stream.\n");
 
         return get_ulong_from_stream(stream, prompt_message);
     }
