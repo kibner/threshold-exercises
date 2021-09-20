@@ -41,7 +41,7 @@ uint32_t get_ulong_from_stream(FILE *stream, const char *prompt_message) {
     uint32_t ulong_value;
     bool is_success = false;
 
-    while (is_success == false) {
+    while (is_success not_eq true) {
         if (prompt_message not_eq NULL) {
             printf("%s\n", prompt_message);
         }
