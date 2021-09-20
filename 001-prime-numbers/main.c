@@ -5,10 +5,6 @@
 //      Step 4 → Else it is prime
 //    STOP
 
-// A couple of other thoughts... if you're printing error messages, it's better to use fprintf(stderr, ...) so it
-// doesn't get intermingled with stdout.  Also, recursing on get_ulong_from_stream opens you up to potential stack
-// overflow problems if the compiler isn't performing TCO.
-
 #include <errno.h>
 #include <inttypes.h>
 #include <iso646.h>
