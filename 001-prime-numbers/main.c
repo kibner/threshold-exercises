@@ -38,25 +38,32 @@ int main(void) {
 }
 
 uint32_t get_ulong_from_stream(FILE *stream, const char *prompt_message) {
-    if (prompt_message not_eq NULL) {
-        printf("%s\n", prompt_message);
-    }
+    uint32_t ulong_value;
+    bool is_success = false;
 
-    char input_buffer[INPUT_FORMAT_STRING_LENGTH];
-    const char *fgets_result = fgets(input_buffer, INPUT_FORMAT_STRING_LENGTH, stream);
+    while (is_success == false) {
+        if (prompt_message not_eq NULL) {
+            printf("%s\n", prompt_message);
+        }
 
-    if (has_fgets_erred(fgets_result)) {
-        fprintf(stderr, "Unknown error reading from stream.\n");
+        char input_buffer[INPUT_FORMAT_STRING_LENGTH];
+        const char *fgets_result = fgets(input_buffer, INPUT_FORMAT_STRING_LENGTH, stream);
 
-        return get_ulong_from_stream(stream, prompt_message);
-    }
+        if (has_fgets_erred(fgets_result)) {
+            fprintf(stderr, "Unknown error reading from stream.\n");
 
-    const uint32_t ulong_value = parse_ulong_string(input_buffer);
+            continue;
+        }
 
-    if (not is_valid_ulong(ulong_value)) {
-        fprintf(stderr, "Error validating input. Please try again.\n");
+        ulong_value = parse_ulong_string(input_buffer);
 
-        return get_ulong_from_stream(stream, prompt_message);
+        if (not is_valid_ulong(ulong_value)) {
+            fprintf(stderr, "Error validating input. Please try again.\n");
+
+            continue;
+        }
+
+        is_success = true;
     }
 
     return ulong_value;
