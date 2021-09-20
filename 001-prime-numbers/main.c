@@ -46,7 +46,7 @@ uint32_t get_ulong_from_stream(FILE *stream, const char *prompt_message) {
     const char *fgets_result = fgets(input_buffer, INPUT_FORMAT_STRING_LENGTH, stream);
 
     if (has_fgets_erred(fgets_result)) {
-        printf("Unknown error reading from stream.\n");
+        fprintf(stderr, "Unknown error reading from stream.\n");
 
         return get_ulong_from_stream(stream, prompt_message);
     }
@@ -54,7 +54,7 @@ uint32_t get_ulong_from_stream(FILE *stream, const char *prompt_message) {
     const uint32_t ulong_value = parse_ulong_string(input_buffer);
 
     if (not is_valid_ulong(ulong_value)) {
-        printf("Error validating input. Please try again.\n");
+        fprintf(stderr, "Error validating input. Please try again.\n");
 
         return get_ulong_from_stream(stream, prompt_message);
     }
@@ -72,9 +72,9 @@ uint32_t parse_ulong_string(const char *ulong_string) {
 
     if (errno not_eq 0) {
         if (errno == ERANGE) {
-            printf("Out of range error when parsing unsigned long from string.\n");
+            fprintf(stderr, "Out of range error when parsing unsigned long from string.\n");
         } else {
-            printf("Unknown error when parsing unsigned long from string.\n");
+            fprintf(stderr, "Unknown error when parsing unsigned long from string.\n");
         }
 
         return 0;
