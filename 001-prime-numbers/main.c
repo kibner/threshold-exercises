@@ -34,13 +34,11 @@ uint32_t get_valid_prime_ceiling(void) {
                 stdin,
                 "Enter a number to use as the ceiling when calculating prime numbers:");
 
-        if (not is_valid_prime_ceiling(result)) {
-            fprintf(stderr, "Not a valid number for the prime ceiling. Please try again.\n");
-
-            continue;
+        if (is_valid_prime_ceiling(result)) {
+            return result;
         }
 
-        return result;
+        fprintf(stderr, "Not a valid number for the prime ceiling. Please try again.\n");
     }
 }
 
@@ -68,11 +66,9 @@ uint32_t get_uint32_from_stream(FILE *stream, const char *prompt_message) {
 
         result = parse_uint32_string(input_buffer);
 
-        if (errno not_eq 0) {
-            continue;
+        if (errno == 0) {
+            return result;
         }
-
-        return result;
     }
 }
 
