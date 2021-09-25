@@ -46,7 +46,7 @@ bool is_valid_prime_ceiling(const unsigned long ulong_value) {
     return ulong_value >= 2;
 }
 
-uint32_t get_uint32_from_stream(FILE *stream, const char *prompt_message) {
+uint32_t get_uint32_from_stream(FILE *const stream, const char *const prompt_message) {
     uint32_t result;
     char input_buffer[INPUT_FORMAT_STRING_LENGTH];
     const char *fgets_result;
@@ -72,11 +72,11 @@ uint32_t get_uint32_from_stream(FILE *stream, const char *prompt_message) {
     }
 }
 
-bool has_fgets_erred(const char *fgets_result) {
+bool has_fgets_erred(const char *const fgets_result) {
     return fgets_result == NULL;
 }
 
-uint32_t parse_uint32_string(const char *ulong_string) {
+uint32_t parse_uint32_string(const char *const ulong_string) {
     errno = 0;
     unsigned long parsed_number = strtoul(ulong_string, NULL, 0);
 
