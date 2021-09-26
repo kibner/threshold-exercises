@@ -38,9 +38,9 @@ bool has_fgets_erred(const char *const fgets_result) {
     return fgets_result == NULL;
 }
 
-uint32_t parse_uint32_string(const char *const ulong_string) {
+uint32_t parse_uint32_string(const char *const uint32_string) {
     errno = 0;
-    unsigned long parsed_number = strtoul(ulong_string, NULL, 0);
+    unsigned long parsed_number = strtoul(uint32_string, NULL, 0);
 
     switch (errno) {
         case 0:

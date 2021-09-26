@@ -3,11 +3,8 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "../lib/stream_helpers.h"
-
-uint32_t get_valid_prime_ceiling(void);
-
-bool is_valid_prime_ceiling(unsigned long ulong_value);
+#include "main.h"
+#include "../lib/stream_helpers/stream_helpers.h"
 
 int main(void) {
     const uint32_t prime_ceiling = get_valid_prime_ceiling();
@@ -33,6 +30,6 @@ uint32_t get_valid_prime_ceiling(void) {
     }
 }
 
-bool is_valid_prime_ceiling(const unsigned long ulong_value) {
-    return ulong_value >= 2;
+bool is_valid_prime_ceiling(const uint32_t value) {
+    return value >= 2;
 }
