@@ -4,8 +4,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-uint32_t get_valid_prime_ceiling(void);
+uint32_t get_valid_upper_limit(void);
 
-bool is_valid_prime_ceiling(const uint32_t value);
+bool is_valid_upper_limit(const uint32_t value);
 
 #endif //THRESHOLD_EXERCISES_INPUT_HELPERS_H

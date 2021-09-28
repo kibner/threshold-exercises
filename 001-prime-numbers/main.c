@@ -8,10 +8,9 @@
 #include "calculations/brute_force.h"
 
 int main(void) {
-    const uint32_t prime_ceiling = get_valid_prime_ceiling();
-
-    printf("Printing all prime numbers until %"PRIu32":\n", prime_ceiling);
-    calculate_prime_numbers(prime_ceiling, print_number);
+    const uint32_t upper_limit = get_valid_upper_limit();
+    printf("Printing all prime numbers until %"PRIu32":\n", upper_limit);
+    calculate_prime_numbers(upper_limit, print_number);
 
     return EXIT_SUCCESS;
 }
