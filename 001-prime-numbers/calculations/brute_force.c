@@ -2,7 +2,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-void calculate_prime_numbers(const uint32_t upper_limit, void (*const prime_found_callback)(const uint32_t)) {
+void calculate_prime_numbers(const uint32_t upper_limit, prime_found_callback_type prime_found_callback) {
     const uint32_t first_prime = 2;
     const uint32_t second_prime = 3;
 
