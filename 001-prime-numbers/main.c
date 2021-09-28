@@ -11,7 +11,7 @@ int main(void) {
     const uint32_t prime_ceiling = get_valid_prime_ceiling();
 
     printf("Printing all prime numbers until %"PRIu32":\n", prime_ceiling);
-    get_prime_numbers(prime_ceiling, print_number);
+    calculate_prime_numbers(prime_ceiling, print_number);
 
     return EXIT_SUCCESS;
 }
