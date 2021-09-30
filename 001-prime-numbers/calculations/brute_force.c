@@ -29,6 +29,10 @@ bool is_prime(const uint32_t possible_prime) {
         return true;
     }
 
+    if (possible_prime % FIRST_PRIME == 0) {
+        return false;
+    }
+
     const uint32_t upper_limit = possible_prime / 2;
 
     for (uint32_t test_value = SECOND_PRIME;
