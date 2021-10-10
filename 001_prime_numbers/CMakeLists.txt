@@ -13,5 +13,4 @@ target_link_libraries(001_prime_numbers stream_helpers)
 target_include_directories(
         001_prime_numbers PUBLIC
         ${PROJECT_BINARY_DIR}
-        ${CMAKE_SOURCE_DIR}/lib/stream_helpers
 )
