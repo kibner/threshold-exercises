@@ -1,5 +1,5 @@
 #include "input_helpers.h"
-#include "stream_helpers.h"
+#include <stream_helpers.h>
 
 uint32_t get_valid_upper_limit(void) {
     uint32_t result;
