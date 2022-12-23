@@ -1,5 +1,7 @@
-/cmake-build-debug/
-/cmake-build-debug-coverage/
-/.idea/
+# output
 */bin/
 /lib/*/bin/
+/build/
+
+# ides
+/.idea/
