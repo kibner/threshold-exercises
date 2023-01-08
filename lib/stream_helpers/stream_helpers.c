@@ -7,6 +7,7 @@
 #include <stdlib.h>
 
 #define INPUT_FORMAT_STRING_LENGTH ((const uint8_t)(11))
+#define OUT_OF_RANGE_ERROR_MESSAGE "Out of range error when parsing unsigned long from string.\n"
 
 uint32_t get_uint32_from_stream(FILE *const stream, const char *const prompt_message) {
     uint32_t result;
@@ -47,7 +48,7 @@ uint32_t parse_uint32_string(const char *const uint32_string) {
             // successfully parsed
             break;
         case ERANGE:
-            fprintf(stderr, "Out of range error when parsing unsigned long from string.\n");
+            fprintf(stderr, OUT_OF_RANGE_ERROR_MESSAGE);
             parsed_number = 0;
             break;
         default:
