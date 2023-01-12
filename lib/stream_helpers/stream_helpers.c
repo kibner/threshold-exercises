@@ -1,10 +1,6 @@
 // todo:
-// - Several of the functions listed look like helpers (e.g., has_fgets_erred); I'd declare+define those as statics so
-// they don't pollute the global namespace and aren't exported as part of an API
 // - If you're inspecting errno and handling unknown cases, it's nice to print out the unexpected value and to use
 // strerror()
-// - Using #define results in text replacement, so by using it you'll wind up with two copies of the out-of-range error
-// message in the binary.  This is pretty minor, but I'd probably declare it as a file-level static const char *
 // - That being said, the while(true) and error printing logic feels a little out of place to me.  I don't like infinite
 // loops in code, especially in library functions, and doubly-so when there's no way to escape them. I'd expect to see
 // the result of your parsing written into an output parameter and the API function return an error code of some kind.
@@ -28,7 +24,14 @@
 #include <string.h>
 
 #define INPUT_FORMAT_STRING_LENGTH ((const uint8_t)(11))
-#define OUT_OF_RANGE_ERROR_MESSAGE "Out of range error when parsing unsigned long from string.\n"
+
+static const char *const OUT_OF_RANGE_ERROR_MESSAGE = "Out of range error when parsing unsigned long from string.\n";
+
+static bool has_fgets_erred(const char *const fgets_result);
+
+static bool is_negative_uint32_string(const char *const uint32_string);
+
+static uint32_t parse_uint32_string(const char *const uint32_string);
 
 uint32_t get_uint32_from_stream(FILE *const stream, const char *const prompt_message) {
     uint32_t result;
@@ -61,15 +64,15 @@ uint32_t get_uint32_from_stream(FILE *const stream, const char *const prompt_mes
     }
 }
 
-bool has_fgets_erred(const char *const fgets_result) {
+static bool has_fgets_erred(const char *const fgets_result) {
     return fgets_result == NULL;
 }
 
-bool is_negative_uint32_string(const char *const uint32_string) {
+static bool is_negative_uint32_string(const char *const uint32_string) {
     return strchr(uint32_string, '-') not_eq NULL;
 }
 
-uint32_t parse_uint32_string(const char *const uint32_string) {
+static uint32_t parse_uint32_string(const char *const uint32_string) {
     errno = 0;
     unsigned long parsed_number = strtoul(uint32_string, NULL, 0);
 
