@@ -1,3 +1,16 @@
+// todo:
+// - Several of the functions listed look like helpers (e.g., has_fgets_erred); I'd declare+define those as statics so
+// they don't pollute the global namespace and aren't exported as part of an API
+// - If you're inspecting errno and handling unknown cases, it's nice to print out the unexpected value and to use
+// strerror()
+// - Using #define results in text replacement, so by using it you'll wind up with two copies of the out-of-range error
+// message in the binary.  This is pretty minor, but I'd probably declare it as a file-level static const char *
+// - That being said, the while(true) and error printing logic feels a little out of place to me.  I don't like infinite
+// loops in code, especially in library functions, and doubly-so when there's no way to escape them. I'd expect to see
+// the result of your parsing written into an output parameter and the API function return an error code of some kind.
+// The user can then decide to loop if they want. You could also do things like return a code on ^C as an indicator to
+// bail from the loop.
+
 #include "stream_helpers.h"
 #include <errno.h>
 #include <iso646.h>
