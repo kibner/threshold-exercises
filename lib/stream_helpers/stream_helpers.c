@@ -14,6 +14,10 @@
 // preceded by a bunch of spaces, those are not discarded when you do the fgets, but they are when you do the strtoul so
 // it'll appear to parse, but it'll return the wrong value
 
+// todo:
+// - add a check to see if passed in string would overflow uint32_t. see link below for ideas:
+// https://stackoverflow.com/questions/13661481/how-to-check-if-a-number-overflows-an-int
+
 #include "stream_helpers.h"
 #include <errno.h>
 #include <iso646.h>
