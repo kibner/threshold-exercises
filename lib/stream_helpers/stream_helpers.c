@@ -46,7 +46,7 @@ bool has_fgets_erred(const char *const fgets_result) {
 }
 
 bool is_negative_uint32_string(const char *const uint32_string) {
-    return strchr(uint32_string, '-') != NULL;
+    return strchr(uint32_string, '-') not_eq NULL;
 }
 
 uint32_t parse_uint32_string(const char *const uint32_string) {
