@@ -10,6 +10,9 @@
 // the result of your parsing written into an output parameter and the API function return an error code of some kind.
 // The user can then decide to loop if they want. You could also do things like return a code on ^C as an indicator to
 // bail from the loop.
+// - Depending on how you intend the parsing to work, I think there's a subtle bug, too. If someone inputs a number
+// preceded by a bunch of spaces, those are not discarded when you do the fgets, but they are when you do the strtoul so
+// it'll appear to parse, but it'll return the wrong value
 
 #include "stream_helpers.h"
 #include <errno.h>
