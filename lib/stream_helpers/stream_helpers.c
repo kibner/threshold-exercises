@@ -27,11 +27,11 @@
 
 static const char *const OUT_OF_RANGE_ERROR_MESSAGE = "Out of range error when parsing unsigned long from string.\n";
 
-static bool has_fgets_erred(const char *const fgets_result);
+static bool has_fgets_erred(const char *fgets_result);
 
-static bool is_negative_uint32_string(const char *const uint32_string);
+static bool is_negative_uint32_string(const char *uint32_string);
 
-static uint32_t parse_uint32_string(const char *const uint32_string);
+static uint32_t parse_uint32_string(const char *uint32_string);
 
 uint32_t get_uint32_from_stream(FILE *const stream, const char *const prompt_message) {
     uint32_t result;
