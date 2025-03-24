@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.20)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_C_EXTENSIONS OFF)
-set(CMAKE_C_STANDARD 17)
+set(CMAKE_C_STANDARD 19)
 set(CMAKE_C_STANDARD_REQUIRED True)
 # uses clang
 set(CC_COVERAGE_COMPILE_FLAGS "-O2 -Werror -Weverything -Wno-declaration-after-statement")
