@@ -3,4 +3,4 @@ RUN apt-get update  \
     && apt-get dist-upgrade  \
     && apt-get -y install clang-19 cmake gdb  \
     && apt-get autoremove \
-    && export CC=/usr/bin/clang-19
+    && update-alternatives --install /usr/bin/cc cc /usr/bin/clang-19 30
