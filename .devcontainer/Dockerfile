@@ -1,2 +1,2 @@
-FROM mcr.microsoft.com/devcontainers/base:alpine-3.20
-RUN apk update && apk upgrade && apk add clang cmake gdb && rm -rf /tmp/* /var/cache/apk/*
+FROM mcr.microsoft.com/devcontainers/base:bookworm
+RUN apt-get update && apt-get dist-upgrade && apt-get -y install clang cmake gdb && apt-get autoremove
