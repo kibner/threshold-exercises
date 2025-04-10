@@ -9,5 +9,3 @@ Just a repository of my code when participating in some coding exercises with fr
 
 # other info
 Dockerfile to build a container the project is built against can be found in `/.devcontainer/Dockerfile`
-
-testing webhook
