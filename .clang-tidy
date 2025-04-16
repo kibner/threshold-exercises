@@ -1,5 +1,17 @@
 ---
-Checks:          'bugprone-*,cert-*,clang-analyzer-*,concurrency-*,llvm-*,llvmlibc-*,misc-*,modernize-*,performance-*,portability-*,readability-*'
+Checks: '
+bugprone-*
+,cert-*
+,clang-analyzer-*
+,concurrency-*
+,llvm-*
+,llvmlibc-*
+,misc-*
+,modernize-*
+,performance-*
+,portability-*
+,readability-*
+'
 WarningsAsErrors: '*'
 HeaderFileExtensions:
   - ''
@@ -12,6 +24,6 @@ ImplementationFileExtensions:
   - cc
   - cpp
   - cxx
-FormatStyle:     none
-SystemHeaders:   true
+FormatStyle:      none
+SystemHeaders:    true
 ...
